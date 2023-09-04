@@ -1,5 +1,6 @@
 import re
 
+from django.shortcuts import render
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 
@@ -35,3 +36,16 @@ def get_entry(title):
         return f.read().decode("utf-8")
     except FileNotFoundError:
         return None
+
+def get_related_entry(wikiname):
+    """
+    Returns a list of all names of encyclopedia entries which contains the string 'wikiname'.
+    """
+    _, filenames = default_storage.listdir("entries")
+    return list(sorted(re.sub(r"\.md$", "", filename)
+                for filename in filenames if filename.endswith(".md") 
+                and 
+                 wikiname.upper() in map(str.upper, filename )))
+
+
+

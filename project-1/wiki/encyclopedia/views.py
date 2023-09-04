@@ -18,10 +18,10 @@ def wikipage(request, wikiname):
     '''
     This helps in rendering wikipages when clicked on hyperlink, searched
     '''
-    data =markdown2.markdown(util.get_entry(wikiname))
+    data =util.get_entry(wikiname)
     if data != None:
         return render(request, "encyclopedia/wikiname.html", {
-        "wikiname": wikiname.capitalize(), "data": data
+        "wikiname": wikiname.capitalize(), "data": markdown2.markdown(data)
             })
     elif util.get_related_entry(wikiname):
         return render(request, "encyclopedia/search_results.html", {

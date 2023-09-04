@@ -9,7 +9,7 @@
 
     <ul>
         {% for entry in entries %}
-            <li><a href = "{% url 'wikiname' entry %}">{{ entry }}</a></li>
+            <li><a href = "{% url 'encyclopedia:wikiname' entry %}">{{ entry }}</a></li>
         {% endfor %}
     </ul>
 

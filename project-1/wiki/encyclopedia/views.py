@@ -4,7 +4,10 @@ from django.http import Http404,HttpResponse
 from . import util
 
 
+
 def index(request):
+    # if request.method == POST:
+    #     request.POST.
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries()
     })
